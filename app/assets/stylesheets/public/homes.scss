@@ -1,0 +1,91 @@
+// Place all the styles related to the public/homes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+body{
+  margin: 0;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: teal;
+  padding: 0 20px;
+  margin: 0;
+}
+
+header a {
+  color: white;
+  text-decoration: none;
+  transition: 0.3s ease-in-out;
+}
+
+a.logo {
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: 0.08rem;
+}
+
+ul.navList {
+  margin: 0;
+  border: none;
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  padding: 0;
+}
+
+ul.navList li {
+  padding: 0;
+  position: relative;
+}
+
+ul.navList li:after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  content: "";
+  transition: transform 0.3s ease-in-out;
+  transform: scale(0, 1);
+  transform-origin: left top;
+  background: #313131;
+}
+
+ul.navList li:hover:after, ul.navList li.current:after {
+  transform: scale(1, 1);
+}
+ul.navList li a {
+  height: 60px;
+  line-height: 60px;
+  padding: 0 5px;
+  display: inline-block;
+}
+
+.c{
+  height: 30%;
+  width :30%;
+  margin: 0 auto;
+}
+
+.a{
+  width: 50%;
+  margin: 0 auto;
+}
+
+.fa-arrow-alt-circle-left {
+  font-size: 50px;
+  position: absolute;
+  left: 20%;
+  top: 50%;
+}
+
+.fa-arrow-alt-circle-right {
+  font-size: 50px;
+  position: absolute;
+  left: 80%;
+  top: 50%;
+}
+

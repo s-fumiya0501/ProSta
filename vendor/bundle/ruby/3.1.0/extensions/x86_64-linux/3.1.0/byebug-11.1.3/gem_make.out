@@ -1,0 +1,19 @@
+current directory: /home/fumiya238/ProSta/vendor/bundle/ruby/3.1.0/gems/byebug-11.1.3/ext/byebug
+/home/fumiya238/.rbenv/versions/3.1.2/bin/ruby -I /home/fumiya238/.rbenv/versions/3.1.2/lib/ruby/3.1.0 -r ./siteconf20230206-15088-84bs2l.rb extconf.rb
+creating Makefile
+
+current directory: /home/fumiya238/ProSta/vendor/bundle/ruby/3.1.0/gems/byebug-11.1.3/ext/byebug
+make DESTDIR\= clean
+
+current directory: /home/fumiya238/ProSta/vendor/bundle/ruby/3.1.0/gems/byebug-11.1.3/ext/byebug
+make DESTDIR\=
+compiling breakpoint.c
+compiling byebug.c
+compiling context.c
+compiling locker.c
+compiling threads.c
+linking shared-object byebug/byebug.so
+
+current directory: /home/fumiya238/ProSta/vendor/bundle/ruby/3.1.0/gems/byebug-11.1.3/ext/byebug
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 byebug.so ./.gem.20230206-15088-1w0hzy/byebug

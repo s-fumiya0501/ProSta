@@ -1,0 +1,96 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ @import "jquery.tagit";       // 記述の順番に注意
+//  @import "tagit.ui-zendesk";
+//  @import 'materialize-css/dist/css/materialize';
+.field label{
+  margin: 12px 0 0;
+  padding: 1px 0 1px 8px;
+  border-left: 3px solid #cc0033;
+  font-size: 14px;
+  font-size: 1.4rem;
+  line-height: 1;
+  font-weight: bold;
+}
+
+
+.creq {
+  background-color: #c62828;
+  color: #fff;
+  display: block;
+  width: 36px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  float: left;
+}
+
+.input_dt {
+  float: left;
+  width: 186px;
+  line-height: 40px;
+}
+
+.input_dd {
+  float: left;
+  width: 644px;
+  line-height: 40px;
+  position: relative;
+}
+
+.name_inl_dl {
+  width: 266px;
+}
+
+.name_in_dl {
+  width: 260px;
+  display: table-cell;
+  vertical-align: bottom;
+}
+
+.name_in_dl dd input {
+  background-color: #fff5f6;
+  width: 190px;
+  -webkit-transition: all .2s ease 0s;
+  transition: all .2s ease 0s;
+}
+
+.input_in_box input, .input_in_box select {
+  height: 38px;
+  border: 1px solid #bdbdbd;
+  padding: 0 0 0 8px;
+  box-sizing: border-box;
+}
+
+input, select, button, textarea {
+  font-family: "游ゴシック",YuGothic,"ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","メイリオ",Meiryo,sans-serif;
+}
+
+.pagination>li>a {          
+  border: none;     /*枠線をなくす*/
+  color: #696969;   /*文字の色を変える*/
+}
+
+/* 表示しているページ番号のデザイン */
+.pagination>.active>a {     
+  background: #93c9ff;     /*背景の色を変える*/
+  border-radius: 15px;     /*角を丸くする*/
+}
+
+/*ホバー時のデザイン*/
+.pagination>li>a:hover {        
+  border-radius: 15px;    /*角を丸くする*/
+}

@@ -1,0 +1,172 @@
+.container {  display: grid;
+  grid-template-columns: 0.fr 1.9fr 0.6fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    ". contents ."
+    ". contents ."
+    ". contents .";
+}
+
+.contents {  display: grid;
+  grid-template-columns: 0.9fr 1.1fr 1fr;
+  grid-template-rows: 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.6fr 0.4fr;
+  grid-auto-rows: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "nickname nickname nickname"
+    "name name name"
+    "name_kana name_kana name_kana"
+    "postcode postcode postcode"
+    "pref pref pref"
+    "city city city"
+    "address address address"
+    "other_address other_address other_address"
+    "email email email"
+    "phone phone phone"
+    "password password password"
+    "confirm_pass confirm_pass confirm_pass"
+    ". submit ."
+    ". link .";
+  grid-area: contents;
+}
+
+.form_field{
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px dotted
+}
+
+.nickname{
+  grid-area: nickname;
+}
+.name { grid-area: name; 
+}
+
+.phone{
+  grid-area: phone;
+}
+.name_kana { grid-area: name_kana; }
+
+.postcode { grid-area: postcode; }
+
+.pref { grid-area: pref; }
+
+.city { grid-area: city; }
+
+.address { grid-area: address; }
+
+.other_address { grid-area: other_address; }
+
+.email { grid-area: email; }
+
+.password { grid-area: password; }
+
+.confirm_pass { grid-area: confirm_pass; }
+
+.submit { grid-area: submit; }
+
+.link { grid-area: link; }
+
+.name_form{
+  margin-left: 138px;
+  display:inline;
+}
+
+.name_kana_form{
+  margin-left: 128px;
+  display:inline;
+}
+
+.postal_form{
+  margin-left: 134px;
+  display:inline;
+}
+
+.pref_form{
+  margin-left: 134px;
+  display:inline;
+}
+
+.city_form{
+  margin-left: 134px;
+  display:inline;
+}
+
+.street_form{
+  margin-left: 166px;
+  display:inline;
+}
+
+.other_form{
+  margin-left: 123px;
+  display:inline;
+}
+
+.email_form{
+  margin-left: 155px;
+  display:inline;
+}
+
+.password_form{
+  margin-left: 140px;
+  display:inline;
+}
+
+.com-password_form{
+  margin-left: 60px;
+  display:inline;
+}
+
+.mei{
+  margin-left: 58px;
+  display:inline;
+}
+
+.nickname_form{
+  margin-left: 129px;
+  display:inline;
+}
+.button_submit{
+  -webkit-appearance: none;
+  display: block;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 16px;
+  margin: 22px 0 0;
+  font-size: 16px;
+  font-size: 1.6rem;
+  font-weight: bold;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.create-btn{
+  padding: 14px 0;
+  background: #2a80b9 none;
+  border: none;
+  color: #fff;
+}
+
+input{
+  width: 20%;
+}
+
+.phone_form{
+  margin-left: 135px;
+  display:inline;
+}
+
+.num_form{
+  width: 7%;
+}
+
+.num_form{
+  width: 7%;
+}

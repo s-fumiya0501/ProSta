@@ -1,0 +1,127 @@
+<h2>新規登録の方</h2>
+
+    
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<div class="container">
+  <div class="contents">
+      <%= render "public/shared/error_messages", resource: resource %>
+      <div class="nickname form_field">
+        <span class="creq">必須</span>
+        ニックネーム
+        <div class="nickname_form">
+          <%= f.text_field :nickname,placeholder:"例）山田" %>
+        </div>
+      </div>
+
+      <div class="name form_field">
+        <span class="creq">必須</span>
+        お名前
+        <div class="name_form">
+          姓<%= f.text_field :last_name,placeholder:"例）山田" %>　　　　名<%= f.text_field :first_name,placeholder:"例）山田" %>
+        </div>
+      </div>
+      <div class="name_kana form_field">
+        <span class="creq">必須</span>
+        フリガナ
+        <div class="name_kana_form">
+        セイ<%= f.text_field :last_name_kana %><div class="mei">メイ<%= f.text_field :first_name_kana %></div>
+        </div>
+      </div>
+      <div class="postcode form_field">
+        <span class="creq">必須</span>
+        <%= f.label :postal_code ,class: "form" %>
+        <div class="postal_form">
+          <%= f.text_field :postal_code %>
+        </div>
+      </div>
+      <div class="pref form_field">
+        <span class="creq">必須</span>
+        <%= f.label :prefecture_code %>
+        <div class="pref_form">
+          <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :name, :name %>
+        </div>
+      </div>
+      <div class="city form_field">
+        <span class="creq">必須</span>
+        <%= f.label :city %>
+        <div class="city_form">
+          <%= f.text_field :city %>
+        </div>
+      </div>
+      <div class="address form_field">
+        <span class="creq">必須</span>
+        <%= f.label :street %>
+        <div class="street_form">
+          <%= f.text_field :street %>
+        </div>
+      </div>
+      <div class="other_address form_field">
+        <span class="cre">　　</span>
+        <%= f.label :other_address %>
+        <div class="other_form">
+          <%= f.text_field :other_address %>
+        </div>
+      </div>
+      <div class="email form_field">
+        <span class="creq">必須</span>
+        <%= f.label :email %>
+        <div class="email_form">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
+      </div>
+      <div class="phone form_field">
+        <span class="creq">必須</span>
+        <%= f.label :phone_number %>
+        <div class="phone_form" id="div1">
+          <input type="text" name="student[phone_num1]" id="student_phone_number1" class="num_form" maxlength="3" onkeyup="setNextFocus(this)"> -
+          <input type="text" name="student[phone_num2]" id="student_phone_number2" class="num_form" maxlength="4" onkeyup="setNextFocus(this)"> -
+          <input type="text" name="student[phone_num3]" id="student_phone_number3" class="num_form" maxlength="4" onkeyup="setNextFocus(this)">
+        </div>
+      </div>
+      <div class="password form_field">
+        <span class="creq">必須</span>
+        <%= f.label :password %>
+        <div class="password_form">
+          <%= f.password_field :password, autocomplete: "new-password" %>
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> 文字以上)</em>
+          <% end %>
+        </div>
+      </div>
+      <div class="confirm_pass form_field">
+        <span class="creq">必須</span>
+        <%= f.label :password_confirmation %>
+        <div class="com-password_form">
+          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        </div>
+      </div>
+      <div class="submit form_field">
+        <%= f.submit "アカウント登録",class: "button_submit create-btn"%>
+      </div>
+      <div class="link">
+        <%= render "public/shared/links" %>
+      </div>
+      
+  </div>
+</div>
+      <% end %>
+
+
+<script type="text/javascript" src="//jpostal-1006.appspot.com/jquery.jpostal.js"></script>
+<script>
+  function setNextFocus(obj){
+    console.log(obj)
+    const div =document.getElementById("div1");
+    const children = div.children
+    console.log(children)
+    if(obj.value.length >= obj.maxLength){
+      for(var i=0;i < children.length; i++){
+        if(children[i] == obj){
+          children[i+1].focus();
+          // 繰り返し処理を終了
+          break;
+        }
+      }
+    }
+  }
+</script>

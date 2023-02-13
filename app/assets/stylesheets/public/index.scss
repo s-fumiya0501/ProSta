@@ -1,0 +1,36 @@
+.box {
+  display: grid; 
+  grid-template-columns: 16.5% 67% 16.5%; 
+  grid-template-rows: 0.8fr 1.2fr 1fr; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    ". index ."
+    ". index ."
+    ". index ."; 
+}
+.index {
+  display: grid; 
+  grid-template-columns: 100%; 
+  grid-template-rows: 1.0fr; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    "search"
+    "."; 
+  grid-area: index; 
+}
+
+a.article-title {
+  text-decoration: none;
+  color: teal; ;
+}
+
+
+
+.article{
+  border-bottom: 1px dotted;
+  border-top: 1px dotted;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.search { grid-area: search; }

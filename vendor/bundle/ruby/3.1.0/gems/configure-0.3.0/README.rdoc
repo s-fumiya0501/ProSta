@@ -1,0 +1,207 @@
+
+= Configure
+
+Configure offers an easy way for configure your application using a DSL. It provides a single-method interface that
+receives a block and returns well-structured configuration values.
+
+== Usage
+
+The most simple way <tt>configure</tt> can be used is to pass a block to the <tt>Configure.process</tt> method and
+receive back a hash with the configuration values.
+
+  laser = Configure.process {
+    label "red laser"
+    wave_length 700
+  }
+
+  laser == {
+    :label => "red laser",
+    :wave_length => 700
+  } # => true
+
+=== Nested configurations
+
+It is also possible to pass blocks to configuration keys and combine multiple values to an array.
+
+  laser = Configure.process {
+    label "red and violet pulse laser"
+    pulse {
+      wave_length 700
+      duration 20
+    }
+    pulse {
+      wave_length 400
+      duration 20
+    }
+  }
+
+  laser == {
+    :label => "red and violet pulse laser",
+    :pulse => [
+      { :wave_length => 700, :duration => 20 },
+      { :wave_length => 400, :duration => 20 }
+    ]
+  } # => true
+
+If arguments and a block is passed to a configuration key, the arguments are stored at the <tt>:arguments</tt> key
+inside the nested configuration.
+
+  laser = Configure.process {
+    label "red pulse laser"
+    pulse "test" {
+      wave_length 700
+      duration 20
+    }
+  }
+
+  laser = {
+    :label => "red pulse laser",
+    :pulse => {
+      :wave_length => 700,
+      :duration => 20,
+      :arguments => [ "test" ]
+    }
+
+  } # => true
+
+== Schema
+
+In order receive a more structured configuration, a schema can be passed to the <tt>Configure.process</tt> method. This
+schema is a simple hash, that can be created - off course - using the configure syntax ;-) (Guess how the
+schema-structure is defined internally ;-) )
+
+=== Defaults
+
+  schema = Configure::Schema.build {
+    defaults {
+      wave_length 700
+      duration 20
+    }
+  }
+
+  laser = Configure.process(schema) {
+    label "violet pulse laser"
+    wave_length 400
+  }
+
+  laser = {
+    :label => "violet pulse laser",
+    :wave_length => 400,
+    :duration => 20
+  } # => true
+
+=== Nested schemas
+
+Nested schema have to go to the <tt>nested</tt> section.
+
+  schema = Configure::Schema.build {
+    nested {
+      pulse {
+        defaults {
+          wave_length 700
+          duration 20
+        }
+      }
+    }
+  }
+
+If a nested schema provides the key <tt>argument_keys</tt>, the arguments that have been passed along with the nested
+configuration, are stored to these keys. The rest will be assigned to the <tt>:arguments</tt> key as before.
+
+  schema = Configure::Schema.build {
+    nested {
+      pulse {
+        argument_keys :wave_length, :duration
+      }
+    }
+  }
+
+  laser = Configure.process(schema) {
+    pulse(700, 20, :extra) {
+      label "red pulse"
+    }
+  }
+
+  laser == {
+    :pulse => {
+      :wave_length => 700,
+      :duration => 20,
+      :arguments => [ :extra ]
+      :label => "red pulse"
+    }
+  } # => true
+
+The <tt>:nested_default</tt> attribute can be used to define a default schema for all nested blocks.
+
+=== Configuration class
+
+Sometimes, a hash may not be the best data structure to store the configuration. If a more strict structure is needed,
+the attribute <tt>:configuration_class</tt> can be set the schema. When the configuration is processed, the class is
+instantiated and the values are set via <tt>key=</tt> or the <tt>[]=</tt> methods. If both is not possible, an exception
+is raised.
+
+  class Laser
+
+    attr_accessor :label
+    attr_accessor :wave_length
+    attr_accessor :duration
+
+  end
+
+  schema = Configure::Schema.build {
+    configuration_class Laser
+    defaults {
+      duration 20
+    }
+  }
+
+  laser = Configure.process(schema) {
+    label "red laser"
+    wave_length 700
+  }
+
+  laser.is_a? Laser          # => true
+  laser.label == "red laser" # => true
+  laser.wave_length == 700   # => true
+  laser.duration == 20       # => true
+
+  Configure.process(schema) {
+    invalid_key "value"
+  } # => raises Configure::InvalidKeyError
+
+=== The Only list
+
+If the <tt>:only</tt> attribute is defined in a schema, only the values of the given keys are allowed to be set.
+
+  schema = Configure::Schema.build {
+    only :duration
+  }
+
+  laser = Configure.process(schema) {
+    wave_length 700
+  } # => raises Configure::InvalidKeyError
+
+=== The Not-Nil list
+
+If the <tt>:not_nil</tt> attribute is defined in a schema, an error will be raised if one of the values of the given
+keys remains <tt>nil</tt>.
+
+  schema = Configure::Schema.build {
+    only :wave_length, :duration
+    not_nil :duration
+  }
+
+  laser = Configure.process(schema) {
+    wave_length 700
+  } # => raises Configure::NilValueError
+
+== Development
+
+Development has been done test-driven and the code follows at most the Clean Code paradigms. Code smells has been
+removed by using the reek[http://github.com/kevinrutherford/reek] code smell detector.
+
+This project is still under development. Any bug report and contribution is welcome!
+
+== Support
+
+Apart from contribution, support via Flattr[http://flattr.com/thing/145021/Configure-DSL-for-Ruby] is welcome.

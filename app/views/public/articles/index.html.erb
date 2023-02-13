@@ -1,0 +1,39 @@
+<div class="box">
+  <div class="index">
+    <div class="search">
+      <ul class="tab-list list-unstyled">
+        <li class="tab tab-active">
+          キーワード検索
+        </li>
+        <li class="tab">
+          タグ検索
+        </li>
+      </ul>
+      <div class="tabbox-contents">
+        <div class="tabbox box-show">
+          <%=search_form_for @q do |f|%>
+            <%= f.search_field :content_cont, placeholder: '記事の内容'%>
+          <%= f.submit %>
+          <%end%>
+        </div>
+        <div class="tabbox">
+          テスト
+        </div>
+      </div>
+    </div>
+    <% @articles.each do |article|%>
+      <div class="article">
+        <h3><%=link_to article.title , root_path,class:"article-title"%></h3>
+        Tag:
+        <% tags = article.tag_counts_on(:tags)%>
+          <%tags.each do |tag|%>
+            <%=tag%>
+          <%end%>
+        <div class="article-nickname">By <%= article.student.nickname%></div>
+        <%= article.created_at.strftime("%Y年%m月%d日").to_s %>
+      </div>
+    <%end%>
+    <%= paginate @articles %>
+  </div>
+</div>
+<%= javascript_pack_tag "tab" %>

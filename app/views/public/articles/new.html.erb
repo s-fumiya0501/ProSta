@@ -1,0 +1,41 @@
+<%= form_with model: @article do |f|%>
+  <div class="form-group">
+    <p>タイトル</p>
+    <%=f.text_field :title, class: 'form-control', id: 'task_name'%>
+  </div>
+  <div class="form-group">
+    <p>記事</p>
+    <%=f.text_field :content, class: 'form-control', id: 'task_name'%>
+  </div>
+  <div class="form-group">
+    <p>タグ</p>
+    <%=f.text_field :tag_list, value: @article.tag_list.join(','), class: "form-control"%>
+  </div>
+  <%= f.submit%>
+<%end%>
+<script>
+  jQuery(document).on('turbolinks:load', function(){
+    $("#article_tag_list").tagit({
+      tagLimit:10,
+      singleField: true
+    });
+    let tag_count = 10 - $(".tagit-choice").length    // 登録済みのタグを数える
+    $(".ui-widget-content.ui-autocomplete-input").attr(
+      'placeholder','あと' + tag_count + '個登録できます');
+    
+    $('.ui-helper-hidden-accessible').css('display', 'none');
+  });
+
+  $(document).on("keyup", '.tagit', function() {
+    let tag_count = 10 - $(".tagit-choice").length    // ↑ と同じなので、まとめた方がいい。
+    $(".ui-widget-content.ui-autocomplete-input").attr(
+    'placeholder','あと' + tag_count + '個登録できます');
+    $('.ui-helper-hidden-accessible').css('display', 'none');
+  });
+
+  $(document).on("click", '.tagit', function() {
+    let tag_count = 10 - $(".tagit-choice").length    // ↑ と同じなので、まとめた方がいい。
+    $(".ui-widget-content.ui-autocomplete-input").attr(
+    'placeholder','あと' + tag_count + '個登録できます');
+  });
+</script>
