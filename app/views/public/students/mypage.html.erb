@@ -5,11 +5,16 @@
 <% if @student == current_student%>
   <div id="map"></div>
 <%end%>
+
+<p>ストップウォッチ</p>
+
+
 <style>
     #map {
       height: 500px;
       width: 70%;
     }
 </style>
+
 <script src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['API_KEY']%>&callback=initMap" async defer></script>
 <%= javascript_pack_tag "map" %>

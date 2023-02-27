@@ -14,7 +14,8 @@
   <%= f.submit%>
 <%end%>
 <script>
-  jQuery(document).on('turbolinks:load', function(){
+  jQuery(document).ready(function(){
+
     $("#article_tag_list").tagit({
       tagLimit:10,
       singleField: true
@@ -27,6 +28,27 @@
   });
 
   $(document).on("keyup", '.tagit', function() {
+    let input = $(".ui-widget-content.ui-autocomplete-input").val();  // 変数inputに、入力値を格納
+    $.ajax({
+      type: 'GET',
+      url: 'get_tag_search',    // ルーティングで設定したurl
+      data: { key: input },     // 入力値を:keyとして、コントローラーに渡す
+      dataType: 'json'
+    })
+
+    .done(function(data){
+      if(input.length) {               // 入力値がある時のみ 
+        let tag_list = [];             // 空の配列を準備
+        data.forEach(function(tag) {   // 取得したdataのnameを配列に格納
+          tag_list.push(tag.name);
+          console.log(tag_list); // 1つずつ追加。 tag_list = ["タグ名1", "タグ名2", ..]
+        });
+        $("#article_tag_list").tagit({
+          availableTags: tag_list
+          
+        });
+      }
+    })
     let tag_count = 10 - $(".tagit-choice").length    // ↑ と同じなので、まとめた方がいい。
     $(".ui-widget-content.ui-autocomplete-input").attr(
     'placeholder','あと' + tag_count + '個登録できます');
@@ -38,4 +60,5 @@
     $(".ui-widget-content.ui-autocomplete-input").attr(
     'placeholder','あと' + tag_count + '個登録できます');
   });
+
 </script>

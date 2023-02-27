@@ -13,8 +13,8 @@
  *= require_tree .
  *= require_self
  */
- @import "jquery.tagit";       // 記述の順番に注意
-//  @import "tagit.ui-zendesk";
+@import "jquery.tagit";       // 記述の順番に注意
+@import "tagit.ui-zendesk";
 //  @import 'materialize-css/dist/css/materialize';
 .field label{
   margin: 12px 0 0;

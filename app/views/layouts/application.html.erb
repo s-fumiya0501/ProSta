@@ -25,6 +25,7 @@
             <li><%= link_to "マイページ",mypage_student_path(current_student) %></li>
             <li><%= link_to "新規投稿",new_article_path %></li>
             <li><%= link_to "投稿一覧",articles_path %></li>
+            <li><%= link_to "学習記録",new_learning_path%>
             <li><%= link_to "ログアウト",destroy_student_session_path, method: :delete %></li>
           <% else %>
             <li><%= link_to "ログイン",new_student_session_path %></li>

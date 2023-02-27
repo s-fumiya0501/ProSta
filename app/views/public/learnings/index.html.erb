@@ -1,0 +1,14 @@
+<table>
+  <% @learnings.each do |learn| %>
+  <tr>
+    <td>
+      <% if learn.hour!= 0%><%= learn.hour%><%end%>
+    </td>
+    <td><% if learn.hour!= 0%>時間<%end%></td>
+    <td><%= learn.min(learn.hour)%></td>
+    <td>分</td>
+    <td><%= learn.sec(learn.min(learn.hour),learn.hour)%></td>
+    <td>秒</td>
+  </tr>
+  <% end %>
+<table>

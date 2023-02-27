@@ -16,3 +16,12 @@
     student_id: 1
   )
 end
+
+100.times do |n|
+  start_time = 69
+  end_time = 36000
+  Learning.create!(
+    title: "Test#{n+1}",
+    study_time:Random.rand(start_time..end_time)
+  )
+end

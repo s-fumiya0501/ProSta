@@ -10,7 +10,12 @@ Rails.application.routes.draw do
         get 'mypage'
       end
     end
-    resources :articles
+    resources :articles do
+      get 'get_tag_search', on: :collection, defaults: { format: 'json' }
+      get 'get_tag_search', on: :member, defaults: { format: 'json' }
+    end
+
+    resources :learnings
   end
 
   

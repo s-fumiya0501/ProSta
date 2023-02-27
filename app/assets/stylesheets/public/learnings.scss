@@ -1,0 +1,83 @@
+// Place all the styles related to the public/learnings controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.TimeContainer {  display: grid;
+  grid-template-columns: 17.4% 66.7% 15.9%;
+  grid-template-rows: 0.4fr 1.8fr 0.8fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    ". . ."
+    ". Timer ."
+    ". botton .";
+}
+
+.Timer { grid-area: Timer; }
+
+.botton { grid-area: botton; }
+
+#timer{
+  text-align: center;
+  font-size: 96px;
+}
+
+.timer-btn{
+  list-style:none;
+  font-size: 20px;
+  width: 50%;
+  padding: 10px;
+  cursor: pointer;
+  border-left: solid 1px #CCC;
+  border-bottom: solid 1px #CCC;
+  text-align: center;
+  border-radius: 10px;
+  color:#CCC;
+  margin: 0 auto;
+}
+
+#btn{
+  padding: 10px;
+  margin: 0 auto;
+  display: flex;
+}
+
+.disabled{
+  display: none;
+}
+
+#start{
+  background-color: #0d6efd;
+}
+#start:hover{
+  background-color: #085cd9;
+}
+
+#stop{
+  background-color: red;
+}
+
+#stop:hover{
+  background-color: rgb(159, 47, 47);
+}
+
+#reset{
+  background-color: teal;
+}
+
+#time-submit-btn{
+  width: 20%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    margin-top: 30px;
+    cursor: pointer;
+    border-radius: 10px;
+    border: solid 1px #CCC;
+    background-color: #0d6efd;
+    color: #CCC;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: 400;
+}
+

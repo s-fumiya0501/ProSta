@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function() {
+$(document).ready(function() {
   $(function() {
     // .tabがクリックされたときを指定
     $('.tab').click(function(){
