@@ -14,7 +14,7 @@ import "chartkick/chart.js"
 //import 'materialize-css/dist/js/materialize'
 import "tag-it"
 import "popper.js";
-import "address_autofill"
+//import "address_autofill"
 //import "./slick"
 
 
