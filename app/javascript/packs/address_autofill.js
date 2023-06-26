@@ -1,4 +1,4 @@
-jQuery(document).on('turbolinks:load', function() {
+jQuery(document).on(function() {
   console.log("Turbolinks loaded")
   $('#student_postal_code').jpostal({
     postcode : [

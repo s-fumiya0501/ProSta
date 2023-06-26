@@ -8,12 +8,13 @@ import Rails from "@rails/ujs"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "jquery-ui";
-import "jquery";
+import "jquery"
+import "chartkick/chart.js"
 //import 'app/assets/stylesheets/application'
 //import 'materialize-css/dist/js/materialize'
 import "tag-it"
 import "popper.js";
-import "./address_autofill"
+import "address_autofill"
 //import "./slick"
 
 

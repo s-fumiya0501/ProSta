@@ -10,7 +10,7 @@
     <p id="timer">00:00:00</p>
   </div>
   <div class="botton">
-    <%= form_with model: @study, local: true do |f|%>
+    <%= form_with model: @study,url: confirm_learnings_path ,  local: true do |f|%>
       <ul id="btn">
         <li class="timer-btn" id="start" >スタート</li>
         <li class="timer-btn disabled" id="stop">ストップ</li>

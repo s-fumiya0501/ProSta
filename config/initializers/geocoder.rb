@@ -32,6 +32,6 @@ Geocoder.configure(
     Geocoder::InvalidRequest,
     Geocoder::InvalidApiKey
   ],
-  api_key:  ENV['API_KEY'],
+  api_key:  "AIzaSyAH59KUk3PQs_ESy7IhW_thtfUQJWUlyQ4",
   use_https: true
 )

@@ -1,0 +1,79 @@
+<div class="row mt-5 mb-5">
+  <div class="col-12 ">
+    <div class="d-flex align-items-center justify-content-center"><%= image_tag @student.get_avater_image(225, 225) ,class: 'round'%></div>
+  </div>
+</div>
+<div class="row mt-5 mb-5">
+  <div class="col-3"></div>
+  <div class="col-6 ">
+    <h3 class="text-center"> <%=@student.nickname %></h3>
+  </div>
+  <div class="col-3"></div>
+</div>
+<div class="row mt-5 mb-5">
+    <div class="col-3">
+      <h3 class="text-center">ランキング</h3>
+        <div class="ranking_box">
+            <% @top_languages.each_with_index do |(language, study_time), index| %>
+            <% rank= case index when 0 then "first" when 1 then "second" when 2 then "third" end %>
+                <div class="rank_<%= rank %>">
+                    <div class="rank_<%= rank %>_text"><%= index + 1 %>. <%= language %>: <%= study_time/60 %> 時間</div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+    <div class="col-9">
+      <h3 class="text-center">言語別学習時間</h3>
+      <%= bar_chart @data ,colors: ["#FF0000", "#FFFF00", "#00FF00","#008080","#800080"],library: {animation: {duration: 3000}}%>
+    </div>
+</div>
+
+<div class="row mt-5 mb-5">
+  <div class="col-2"></div>
+  <div class="col-8">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th class="text-center">ユーザ名</th>
+          <th class="text-center">学習時間</th>
+          <th class="text-center">コンテンツ</th>
+          <th class="text-center">学習した言語</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @learnings.each do |learn| %>
+          <tr>
+            <th class="text-center"><%=learn.student.nickname %></th>
+            <td class="text-center">
+                <% if learn.hour!= 0%>
+                  <%= learn.hour%>時間
+                <% else %>
+                  &ensp;&emsp;&emsp;
+                <%end%>
+                
+              <%if learn.min(learn.hour) >=10%>
+                <%= learn.min(learn.hour)%>
+              <% else %>
+                &ensp;<%= learn.min(learn.hour)%>    
+              <%end%>
+              
+              分
+              <%if learn.sec(learn.min(learn.hour),learn.hour) >=10%>
+                <%= learn.sec(learn.min(learn.hour),learn.hour)%>
+              <% else %>
+                &ensp;<%= learn.sec(learn.min(learn.hour),learn.hour)%>
+              <%end%>
+              秒
+            </td>
+            <th class="text-center"><%=learn.title%></th>
+            <th class="text-center"><%=learn.language.name%></th>
+          </tr>
+        <% end %>
+      </tbody>
+     
+    </table>
+     <%= paginate @learnings %> 
+    
+  </div>
+  <div class="col-2"></div>
+</div>

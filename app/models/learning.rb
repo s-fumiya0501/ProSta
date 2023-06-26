@@ -1,4 +1,6 @@
 class Learning < ApplicationRecord
+  belongs_to :student
+  belongs_to :language
   def hour
     (study_time/3600).floor 
   end

@@ -94,3 +94,97 @@ input, select, button, textarea {
 .pagination>li>a:hover {        
   border-radius: 15px;    /*角を丸くする*/
 }
+
+.ranking_box{
+  width:100%;
+  height: 100%;
+}
+
+.rank_first{
+  width:90%;
+  height: 36%;
+  background-color: gold;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  text-align: center;
+  position:relative;
+  border-radius: 10px; 
+}
+
+.rank_first_text{  
+  width:100%;
+  position:absolute;
+  font-size: 40px;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+
+}
+
+.rank_second_text{  
+  width:100%;
+  position:absolute;
+  font-size: 25px;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+
+}
+
+.rank_second{
+  width:70%;
+  height: 28%;
+  background-color: silver;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  position:relative;
+  text-align: center;
+  border-radius: 10px; 
+}
+
+.rank_third{
+  width:50%;
+  height: 20%;
+  background-color: #cd7f32;
+  margin: 0 auto;
+  position:relative;
+  text-align: center;
+  border-radius: 10px; 
+}
+
+.rank_third_text{
+  width:100%;
+  position:absolute;
+  font-size: 20px;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+}
+
+
+.round{
+  border-radius: 50%;
+}
+
+@keyframes fadeIn {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.rank_first, .rank_second, .rank_third {
+  animation: fadeIn 2s ease-in-out forwards;
+  opacity: 0; 
+  animation-duration: 2s; /* アニメーションの長さを調節します */
+}
+
+.rank_second {
+  animation-delay: 2s; /* 1位のアニメーション後に開始します */
+}
+
+.rank_third {
+  animation-delay: 1s; /* 2位のアニメーション後に開始します */
+}
+
+.rank_first {
+  animation-delay: 3s; /* 3位と2位のアニメーション後に開始します */
+}

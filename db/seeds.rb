@@ -21,6 +21,8 @@ end
   start_time = 69
   end_time = 36000
   Learning.create!(
+    student_id: 1,
+    language_id: rand(1..5),
     title: "Test#{n+1}",
     study_time:Random.rand(start_time..end_time)
   )

@@ -15,7 +15,12 @@ Rails.application.routes.draw do
       get 'get_tag_search', on: :member, defaults: { format: 'json' }
     end
 
-    resources :learnings
+    resources :learnings do
+      collection do
+        post :confirm
+      end
+      
+    end
   end
 
   
