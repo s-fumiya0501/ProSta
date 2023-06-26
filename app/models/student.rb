@@ -14,6 +14,6 @@ class Student < ApplicationRecord
       file_path = Rails.root.join('app/assets/images/IMG_4602.jpg')
       avater.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
-    avater.variant(resize_to_fill: [250,250]).processed
+    avater.variant(resize_to_fill: [width,height]).processed
   end
 end

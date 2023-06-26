@@ -13,9 +13,14 @@ import "chartkick/chart.js"
 //import 'app/assets/stylesheets/application'
 //import 'materialize-css/dist/js/materialize'
 import "tag-it"
-import "popper.js";
+
 //import "address_autofill"
 //import "./slick"
+import 'bootstrap/dist/js/bootstrap'
+import 'bootstrap/dist/css/bootstrap'
+import "@popperjs/core";
+
+
 
 
 

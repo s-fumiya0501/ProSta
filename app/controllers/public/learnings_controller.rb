@@ -15,7 +15,24 @@ class Public::LearningsController < ApplicationController
   end
 
   def index
-    @learnings = Learning.all
+
+      @total_ranking = Student.joins(:learnings)
+                              .group(:id)
+                              .order('SUM(learnings.study_time) DESC')
+                              .limit(3)
+  
+      @weekly_ranking = Student.joins(:learnings)
+                               .where('learnings.created_at >= ?', 1.week.ago)
+                               .group(:id)
+                               .order('SUM(learnings.study_time) DESC')
+                               .limit(3)
+  
+      @monthly_ranking = Student.joins(:learnings)
+                                .where('learnings.created_at >= ?', 1.month.ago)
+                                .group(:id)
+                                .order('SUM(learnings.study_time) DESC')
+                                .limit(3)
+      @all= Learning.all.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def confirm

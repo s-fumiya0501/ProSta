@@ -1,15 +1,154 @@
-<table>
-  <% @learnings.each do |learn| %>
-  <tr>
-    <td>
-      <% if learn.hour!= 0%><%= learn.hour%><%end%>
-    </td>
-    <td><% if learn.hour!= 0%>時間<%end%></td>
-    <td><%= learn.min(learn.hour)%></td>
-    <td>分</td>
-    <td><%= learn.sec(learn.min(learn.hour),learn.hour)%></td>
-    <td>秒</td>
-  </tr>
-  <% end %>
-<table>
- 
+<div class="container">
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <button
+        class="nav-link active"
+        id="nav-home-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#nav-home"
+        type="button"
+        role="tab"
+        aria-controls="nav-home"
+        aria-selected="true"
+      >
+        総合計時間ランキング
+      </button>
+      <button
+        class="nav-link"
+        id="nav-profile-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#nav-profile"
+        type="button"
+        role="tab"
+        aria-controls="nav-profile"
+        aria-selected="false"
+      >
+        総合計時間ランキング
+      </button>
+      <button
+        class="nav-link"
+        id="nav-contact-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#nav-contact"
+        type="button"
+        role="tab"
+        aria-controls="nav-contact"
+        aria-selected="false"
+      >
+        直近一か月ランキング
+      </button>
+    </div>
+  </nav>
+  <div class="row"style="padding-top: 3em;">
+    <div class="tab-content" id="nav-tabContent">
+      <div
+        class="tab-pane fade show active"
+        id="nav-home"
+        role="tabpanel"
+        aria-labelledby="nav-home-tab"
+      >
+        <div class="col-12" style="height: 350px;">
+          <h2 class="text-center">総時間ランキング</h2>
+          <div class="ranking_box">
+            <% @total_ranking.each_with_index do |student,index| %>
+              <% rank= case index when 0 then "first" when 1 then "second" when 2 then "third" end %>
+              <%= link_to student_path(student.id) ,class:"link-dark" do%>
+                <div class="rank_<%= rank %>">
+                  <div class="rank_<%= rank %>_text"><%= index + 1 %>. 　<%= image_tag student.get_avater_image(50, 50),class: 'round'%><%= student.nickname %>: <%= student.learnings.sum(:study_time) /3600%> 時間</div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div
+        class="tab-pane fade"
+        id="nav-profile"
+        role="tabpanel"
+        aria-labelledby="nav-profile-tab"
+      >
+        <div class="col-12" style="height: 350px;">
+          <h2 class="text-center">直近一週間ランキング</h2>
+          <div class="ranking_box">
+            <% @weekly_ranking.each_with_index do |student,index| %>
+              <% rank= case index when 0 then "first" when 1 then "second" when 2 then "third" end %>
+              <%= link_to student_path(student.id) ,class:"link-dark" do%>
+              <div class="rank_<%= rank %>">
+                <div class="rank_<%= rank %>_text"><%= index + 1 %>. 　<%= image_tag student.get_avater_image(50, 50),class: 'round'%><%= student.nickname %>: <%= student.learnings.sum(:study_time) /3600%> 時間</div>
+              </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div
+        class="tab-pane fade"
+        id="nav-contact"
+        role="tabpanel"
+        aria-labelledby="nav-contact-tab"
+      >
+        <div class="col-12" style="height: 350px;">
+          <h2 class="text-center">直近一か月ランキング</h2>
+          <div class="ranking_box">
+            <% @monthly_ranking.each_with_index do |student,index| %>
+              <% rank= case index when 0 then "first" when 1 then "second" when 2 then "third" end %>
+              <%= link_to student_path(student.id) ,class:"link-dark" do%>
+              <div class="rank_<%= rank %>">
+                <div class="rank_<%= rank %>_text"><%= index + 1 %>. 　<%= image_tag student.get_avater_image(50, 50),class: 'round'%><%= student.nickname %>: <%= student.learnings.where('created_at >= ?', 1.month.ago).sum(:study_time) /3600%>時間</div>
+              </div>
+              <% end %>
+            <% end %>
+          </div>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <div class="row" style="padding-top: 5em;">
+    <h2 class="text-center">みんなの勉強時間</h2>
+    <div class="col-12">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th class="text-center">ユーザ名</th>
+            <th class="text-center">学習時間</th>
+            <th class="text-center">コンテンツ</th>
+            <th class="text-center">学習した言語</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @all.each do |learn| %>
+            <tr>
+              <th class="text-center"><%=learn.student.nickname %></th>
+              <td class="text-center">
+                  <% if learn.hour!= 0%>
+                    <%= learn.hour%>時間
+                  <% else %>
+                    &ensp;&emsp;&emsp;
+                  <%end%>
+                  
+                <%if learn.min(learn.hour) >=10%>
+                  <%= learn.min(learn.hour)%>
+                <% else %>
+                  &ensp;<%= learn.min(learn.hour)%>    
+                <%end%>
+                
+                分
+                <%if learn.sec(learn.min(learn.hour),learn.hour) >=10%>
+                  <%= learn.sec(learn.min(learn.hour),learn.hour)%>
+                <% else %>
+                  &ensp;<%= learn.sec(learn.min(learn.hour),learn.hour)%>
+                <%end%>
+                秒
+              </td>
+              <th class="text-center"><%=learn.title%></th>
+              <th class="text-center"><%=learn.language.name%></th>
+            </tr>
+          <% end %>
+        </tbody>
+      
+      </table>
+      <%= paginate @all%> 
+    </div>
+  </div>
+</div>
