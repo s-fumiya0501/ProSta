@@ -286,7 +286,6 @@ DEPENDENCIES
   chartkick
   devise
   devise-i18n
-  dotenv
   dotenv-rails
   geocoder
   gon
