@@ -1,4 +1,5 @@
 class Public::LearningsController < ApplicationController
+  before_action :authenticate_student!
   def create
     @study = Learning.new(learning_params)
     @s= params[:learning][:study_time]

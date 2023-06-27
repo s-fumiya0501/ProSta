@@ -1,0 +1,8 @@
+
+<% if student != current_student%>
+      <% if current_student.following?(student) %>
+        <%= link_to "フォロー外す", student_relationships_path(student.id), method: :delete, remote: true,class:"btn btn-danger" %>
+      <% else %>
+        <%= link_to "フォローする", student_relationships_path(student.id), method: :post, remote: true,class:"btn btn-primary" %>
+      <% end %>
+<% end %>

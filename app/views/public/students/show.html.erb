@@ -6,7 +6,25 @@
 <div class="row mt-5 mb-5">
   <div class="col-3"></div>
   <div class="col-6 ">
-    <h3 class="text-center"> <%=@student.nickname %></h3>
+
+    <h3 class="text-center "> <%=@student.nickname %></h3>
+    <div class="row d-flex align-items-center justify-content-center mt-5 mb-5">
+      <div class="col-6 text-center lead">
+        フォロー数:<div class="number-of-follows-<%= @student.id %>"><%= render "public/relationships/number_of_follow", student: @student %></div>
+      </div>
+      <div class="col-6 text-center lead">
+        フォロワー数:<div class="number-of-followers-<%= @student.id %>"><%= render "public/relationships/number_of_follower", student: @student %></div>
+      </div>
+    </div>
+    <div class="text-center">
+      <div class="follow-btn-<%= @student.id %>">
+        <%= render "public/relationships/follow_btn", student: @student %>
+      </div>
+    </div>
+
+    <%if @student==current_student%>
+      <%= link_to "登録情報確認",mypage_students_path,class:"btn btn-success d-flex align-items-center justify-content-center"%>
+    <% end %>
   </div>
   <div class="col-3"></div>
 </div>

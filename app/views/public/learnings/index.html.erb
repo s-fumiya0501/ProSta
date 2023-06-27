@@ -119,7 +119,7 @@
         <tbody>
           <% @all.each do |learn| %>
             <tr>
-              <th class="text-center"><%=learn.student.nickname %></th>
+              <th class="text-center"><%= link_to student_path(learn.student.id),class:"link-dark text-decoration-none" do %><%= image_tag learn.student.get_avater_image(25, 25),class: 'round'%>　<%=learn.student.nickname %><%end%></th>
               <td class="text-center">
                   <% if learn.hour!= 0%>
                     <%= learn.hour%>時間

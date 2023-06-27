@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'relationships/followings'
+  get 'relationships/followers'
   devise_for :students, controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions',
@@ -6,9 +8,13 @@ Rails.application.routes.draw do
   }
   scope module: :public do
     resources :students do
-      member do
+      collection do
         get 'mypage'
+        get "detail"
       end
+      resource :relationships, only: [:create, :destroy]
+      get 'followings' => 'relationships#followings', as: 'followings'
+      get 'followers' => 'relationships#followers', as: 'followers'
     end
     resources :articles do
       get 'get_tag_search', on: :collection, defaults: { format: 'json' }

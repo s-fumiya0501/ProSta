@@ -1,0 +1,28 @@
+<% if students.exists? %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+      <th class="text-center">ユーザ名</th>
+      <th class="text-center">フォロー数</th>
+      <th class="text-center">フォロワー数</th>
+      <th class="text-center"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% students.each do |student| %>
+      <tr>
+        <th class="text-center"><%= link_to student_path(student.id),class:"link-dark text-decoration-none" do %><%= image_tag student.get_avater_image(25, 25),class: 'round'%>　<%=student.nickname %><%end%></th>
+        <td class="text-center"><div class="number-of-follows-<%= student.id %>"><%= render "public/relationships/number_of_follow", student: student %></div></td>
+        <td class="text-center"><div class="number-of-followers-<%= student.id %>"><%= render "public/relationships/number_of_follower", student: student %></div></td>
+        <th class="text-center">
+          <div class="follow-btn-<%= student.id %>">
+            <%= render "public/relationships/follow_btn", student: student %>
+          </div>
+        </th>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>ユーザーはいません</p>
+<% end %>

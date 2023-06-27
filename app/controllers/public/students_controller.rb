@@ -1,6 +1,8 @@
 class Public::StudentsController < ApplicationController
+  before_action :authenticate_student!
+  before_action :check_student,only: [:mypage]
   def mypage
-    @student = Student.find(params[:id])
+    @student = current_student
     @article = Article.new
     @study = Learning.new
     @initial_value = "00:00:00"
@@ -25,6 +27,14 @@ class Public::StudentsController < ApplicationController
         when 2 then "small"
       end
       puts "<p style='font-size:#{size}'>#{index + 1}. #{language}: #{study_time} hours</p>"
+    end
+  end
+  
+  private
+
+  def check_student
+    unless current_student
+      redirect_to root_path
     end
   end
 end

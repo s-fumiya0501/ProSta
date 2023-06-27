@@ -1,4 +1,5 @@
 class Public::ArticlesController < ApplicationController
+  before_action :authenticate_student!
   def create
     @article=Article.new(article_params)
     @article.student_id = current_student.id
