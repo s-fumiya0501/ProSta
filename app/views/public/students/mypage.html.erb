@@ -4,9 +4,12 @@
       <h4><%= @student.last_name %> <%= @student.first_name %></h4>
       <p><%= @student.last_name_kana %> <%= @student.first_name_kana %></p>
       <p><%= @student.address %></p>
+      <p><%= @student.email %></p>
+      <p><%= @student.phone_number %></p>
       <% if @student == current_student %>
         <div id="map" style="height: 500px; width: 100%;"></div>
       <% end %>
+      <%= link_to "プロフィール画像変更",edit_student_path(current_student),class:"btn btn-success"%>
     </div>
   </div>
 </div>

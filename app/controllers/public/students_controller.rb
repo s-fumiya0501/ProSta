@@ -1,6 +1,6 @@
 class Public::StudentsController < ApplicationController
   before_action :authenticate_student!
-  before_action :check_student,only: [:mypage]
+  before_action :check_student,only: [:mypage,:edit]
   def mypage
     @student = current_student
     @article = Article.new
@@ -14,6 +14,14 @@ class Public::StudentsController < ApplicationController
     @tags = Article.tag_counts_on(:tags).where('name LIKE(?)', "%#{params[:key]}%")
   end
 
+  def update
+    @student = Student.find(params[:id])
+    if @student.update(student_params)
+      redirect_to mypage_students_path,notice:"You have updated user successfully."
+    else
+      render :edit
+    end
+  end
 
   def show
     @student=Student.find(params[:id])
@@ -30,11 +38,18 @@ class Public::StudentsController < ApplicationController
     end
   end
   
+  def edit
+    @student=Student.find(params[:id])
+  end
   private
 
   def check_student
     unless current_student
       redirect_to root_path
     end
+  end
+
+  def student_params
+    params.require(:student).permit(:avater)
   end
 end
